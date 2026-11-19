@@ -136,3 +136,35 @@ The following operations were tested successfully:
 - User authentication.
 - Monthly and yearly reports.
 - Data visualization using charts.
+
+## Stack Choices and Trade-offs
+
+- **Python:** Used for backend development because of its simplicity and readability.
+- **FastAPI:** Provides REST API endpoints and automatic API documentation.
+- **SQLite:** Lightweight database that stores expenses locally without requiring a separate database server.
+- **SQLAlchemy:** Used for database operations and ORM-based data management.
+- **HTML, CSS and JavaScript:** Used to build a simple, responsive frontend without an additional frontend framework.
+
+## Completed vs Skipped
+
+### Completed
+- Add, view, edit and delete expenses.
+- Store expense amounts in Indian Rupees (INR).
+- Categorize expenses into predefined categories.
+- Filter expenses by category, date range and title.
+- Display expenses sorted by most recent date.
+- Show current-month spending summary and category breakdown.
+- Validate required fields, positive amounts and invalid date ranges.
+- Display an empty state when no expenses match the filters.
+
+### Skipped
+- User authentication and multiple-user support — not required for this assignment.
+- Cloud deployment — the application is intended to run locally.
+- Data export to CSV or Excel — not included in the core requirements.
+
+## Known Rough Edges
+
+- The application currently runs locally and is not deployed.
+- The database is SQLite, so it is intended for a small, single-user application.
+- The interface uses basic browser alerts for some error messages.
+- The application does not currently include automated unit or integration tests.

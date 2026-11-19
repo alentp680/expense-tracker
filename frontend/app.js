@@ -25,22 +25,21 @@ function escapeHTML(value) {
 
 async function loadExpenses() {
     try {
-        const params = new URLSearchParams();
-        if ($("searchTitle").value.trim()) params.set("title", $("searchTitle").value.trim());
-        if ($("filterCategory").value) params.set("category", $("filterCategory").value);
-        if ($("fromDate").value) params.set("from_date", $("fromDate").value);
-        if ($("toDate").value) params.set("to_date", $("toDate").value);
+        const fromDate = $("fromDate").value;
+        const toDate = $("toDate").value;
 
-        const response = await fetch(`${API}?${params}`);
-        if (!response.ok) throw new Error("Unable to load expenses");
-
-        const expenses = await response.json();
-        const table = $("expenseTable");
-
-        if (!expenses.length) {
-            table.innerHTML = '<tr><td colspan="6" class="empty">No expenses found.</td></tr>';
+        // Validate date range
+        if (fromDate && toDate && fromDate > toDate) {
+            $("expenseTable").innerHTML = `
+                <tr>
+                    <td colspan="6" class="empty">
+                        From date cannot be later than To date.
+                    </td>
+                </tr>`;
             return;
         }
+
+        const params = new URLSearchParams();
 
         table.innerHTML = expenses.map(e => `
             <tr>
