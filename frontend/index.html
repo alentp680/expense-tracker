@@ -1,0 +1,118 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Expense Tracker</title>
+    <link rel="stylesheet" href="/static/style.css">
+</head>
+<body>
+<div class="container">
+    <header class="header">
+        <div>
+            <h1>Expense Tracker</h1>
+            <p>Manage your money, track your spending.</p>
+        </div>
+        <div id="currentDate"></div>
+    </header>
+
+    <section class="summary-cards">
+        <div class="card total-card">
+            <p>Total Spent This Month</p>
+            <h2 id="totalSpent">₹0.00</h2>
+            <span>Current month expenses</span>
+        </div>
+        <div class="card">
+            <p>Total Expenses</p>
+            <h2 id="expenseCount">0</h2>
+            <span>All recorded transactions</span>
+        </div>
+        <div class="card">
+            <p>Average Expense</p>
+            <h2 id="averageExpense">₹0.00</h2>
+            <span>Current month average</span>
+        </div>
+    </section>
+
+    <section class="card">
+        <h3>Monthly Category Breakdown</h3>
+        <div id="categoryBreakdown" class="category-list">Loading...</div>
+    </section>
+
+    <section class="card">
+        <h3 id="formHeading">Add New Expense</h3>
+        <form id="expenseForm">
+            <div class="form-grid">
+                <div class="field">
+                    <label>Title *</label>
+                    <input id="title" maxlength="150" required placeholder="e.g. Coffee">
+                </div>
+                <div class="field">
+                    <label>Amount (₹) *</label>
+                    <input id="amount" type="number" min="0.01" step="0.01" required>
+                </div>
+                <div class="field">
+                    <label>Category *</label>
+                    <select id="category" required>
+                        <option value="">Select category</option>
+                        <option>Food</option>
+                        <option>Transport</option>
+                        <option>Shopping</option>
+                        <option>Bills</option>
+                        <option>Entertainment</option>
+                        <option>Others</option>
+                    </select>
+                </div>
+                <div class="field">
+                    <label>Date *</label>
+                    <input id="date" type="date" required>
+                </div>
+                <div class="field full">
+                    <label>Note (Optional)</label>
+                    <textarea id="note" rows="2"></textarea>
+                </div>
+            </div>
+            <div class="form-actions">
+                <button class="btn-primary" id="submitBtn" type="submit">Add Expense</button>
+                <button class="btn-secondary" id="cancelEdit" type="button" hidden>Cancel</button>
+            </div>
+        </form>
+    </section>
+
+    <section class="card">
+        <h3>Expense History</h3>
+        <div class="filters">
+            <input id="searchTitle" placeholder="Search by title...">
+            <select id="filterCategory">
+                <option value="">All Categories</option>
+                <option>Food</option>
+                <option>Transport</option>
+                <option>Shopping</option>
+                <option>Bills</option>
+                <option>Entertainment</option>
+                <option>Others</option>
+            </select>
+            <input id="fromDate" type="date" title="From date">
+            <input id="toDate" type="date" title="To date">
+            <button class="btn-secondary" id="clearFilters" type="button">Clear</button>
+        </div>
+        <div class="table-wrapper">
+            <table>
+                <thead>
+                    <tr>
+                        <th>Title</th><th>Amount</th><th>Category</th>
+                        <th>Date</th><th>Note</th><th>Actions</th>
+                    </tr>
+                </thead>
+                <tbody id="expenseTable">
+                    <tr><td colspan="6">Loading expenses...</td></tr>
+                </tbody>
+            </table>
+        </div>
+    </section>
+    <footer>Expense Tracker | Python, FastAPI and SQLite</footer>
+</div>
+<script src="/static/app.js"></script>
+</body>
+</html>
